@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { SetEditing, updateNote } from "../redux/features/notesSlice"
+import { toast, Zoom } from 'react-toastify';
 
 const UpdateNote = () => {
     const [updatedTitle, setUpdatedTitle] = useState('')
@@ -23,7 +24,20 @@ const UpdateNote = () => {
                 : item;
         })
         dispatch(updateNote(updatedNotes))
-        
+
+        // Note updated successfully
+        toast.success('Note updated successfully ✅', {
+            position: "top-center",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+            transition: Zoom,
+        });
+
         // Resetting values
         setUpdatedTitle('');
         setUpdatedDesc('');
